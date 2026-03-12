@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects • Agni Kumar Das</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Agni Kumar Das <span class="animate" style="--i:1;"></span></a>
+        <div class="bx bx-menu" id="menu-icon"><span class="animate" style="--i:2;"></span></div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="experience.html">Experience</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Contact</a>
+            <span class="active-nav"></span>
+            <span class="animate" style="--i:3;"></span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="projects show-animate" id="projects">
+            <h2 class="heading">My <span>Projects</span> <span class="animate scroll" style="--i:1;"></span></h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-icon"><i class='bx bx-bot'></i></div>
+                    <h3>AI-Driven Fashion Design Assistant</h3>
+                    <p>An intelligent system that leverages AI to assist in fashion design, providing style recommendations, trend analysis, and design suggestions.</p>
+                    <div class="project-tags">
+                        <span>AI/ML</span>
+                        <span>Python</span>
+                        <span>Deep Learning</span>
+                    </div>
+                    <span class="animate scroll" style="--i:2;"></span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class='bx bx-cart'></i></div>
+                    <h3>E-Commerce Website</h3>
+                    <p>A full-featured e-commerce platform with product catalog, shopping cart, user authentication, and secure payment integration.</p>
+                    <div class="project-tags">
+                        <span>HTML/CSS</span>
+                        <span>JavaScript</span>
+                        <span>Backend</span>
+                    </div>
+                    <span class="animate scroll" style="--i:3;"></span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class='bx bx-leaf'></i></div>
+                    <h3>Crop ChatBot</h3>
+                    <p>A conversational chatbot that helps farmers with crop-related queries, providing insights on best practices, disease detection, and yield optimization.</p>
+                    <div class="project-tags">
+                        <span>NLP</span>
+                        <span>Python</span>
+                        <span>Chatbot</span>
+                    </div>
+                    <span class="animate scroll" style="--i:4;"></span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
+                    <h3>Sales Data Analysis</h3>
+                    <p>A data analysis project that processes and visualizes sales data to uncover trends, patterns, and actionable business insights using Python.</p>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>Pandas</span>
+                        <span>Data Viz</span>
+                    </div>
+                    <span class="animate scroll" style="--i:5;"></span>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer show-animate">
+        <div class="footer-text"><p>&copy; 2025 Agni Kumar Das. All rights reserved.</p></div>
+        <div class="footer-iconTop"><a href="#projects" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></a></div>
+        <span class="animate scroll" style="--i:1;"></span>
+    </footer>
+
+    <script>
+    const header = document.querySelector('.header');
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    menuIcon?.addEventListener('click', () => { navbar.classList.toggle('active'); menuIcon.classList.toggle('bx-x'); });
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('sticky', window.scrollY > 50);
+        document.querySelectorAll('section').forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) sec.classList.add('show-animate');
+        });
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            const fRect = footer.getBoundingClientRect();
+            if (fRect.top < window.innerHeight * 0.9) footer.classList.add('show-animate');
+        }
+    });
+    </script>
+</body>
+</html>

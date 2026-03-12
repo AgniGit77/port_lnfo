@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills • Agni Kumar Das</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Agni Kumar Das <span class="animate" style="--i:1;"></span></a>
+        <div class="bx bx-menu" id="menu-icon"><span class="animate" style="--i:2;"></span></div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            
+            <a href="experience.html">Experience</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+            <span class="active-nav"></span>
+            <span class="animate" style="--i:3;"></span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="skills show-animate" id="skills">
+            <h2 class="heading">My <span>Skills</span> <span class="animate scroll" style="--i:1;"></span></h2>
+            <div class="skills-row">
+                <div class="skills-column">
+                    <h3 class="title">Programming</h3>
+                    <div class="skills-box">
+                        <div class="skills-content">
+                            <div class="progress" data-target="90"><h3>Python <span class="percent">0%</span></h3><div class="bar"><span data-target="90" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="80"><h3>Java <span class="percent">0%</span></h3><div class="bar"><span data-target="80" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="65"><h3>React <span class="percent">0%</span></h3><div class="bar"><span data-target="65" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="75"><h3>Frontend <span class="percent">0%</span></h3><div class="bar"><span data-target="75" style="width:0%"></span></div></div>
+                        </div>
+                    </div>
+                    <span class="animate scroll" style="--i:2;"></span>
+                </div>
+                <div class="skills-column">
+                    <h3 class="title">Tools</h3>
+                    <div class="skills-box">
+                        <div class="skills-content">
+                            <div class="progress" data-target="95"><h3>Git/GitHub <span class="percent">0%</span></h3><div class="bar"><span data-target="95" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="67"><h3>VS Code <span class="percent">0%</span></h3><div class="bar"><span data-target="67" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="85"><h3>Power BI<span class="percent">0%</span></h3><div class="bar"><span data-target="85" style="width:0%"></span></div></div>
+                            <div class="progress" data-target="60"><h3>Project Management <span class="percent">0%</span></h3><div class="bar"><span data-target="60" style="width:0%"></span></div></div>
+                        </div>
+                    </div>
+                    <span class="animate scroll" style="--i:3;"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer show-animate">
+        <div class="footer-text"><p>&copy; 2025 Agni Kumar Das. All rights reserved.</p></div>
+        <div class="footer-iconTop"><a href="#skills" aria-label="Back to top"><i class='bx bx-up-arrow-alt'></i></a></div>
+        <span class="animate scroll" style="--i:1;"></span>
+    </footer>
+
+    <script>
+    const header = document.querySelector('.header');
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    menuIcon?.addEventListener('click', () => { navbar.classList.toggle('active'); menuIcon.classList.toggle('bx-x'); });
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('sticky', window.scrollY > 50);
+        document.querySelectorAll('section').forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) sec.classList.add('show-animate');
+        });
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            const fRect = footer.getBoundingClientRect();
+            if (fRect.top < window.innerHeight * 0.9) footer.classList.add('show-animate');
+        }
+    });
+
+    // skills animation
+    const skillsSection = document.getElementById('skills');
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('#skills .progress').forEach(prog => {
+                    const target = parseInt(prog.getAttribute('data-target')) || 0;
+                    const bar = prog.querySelector('.bar span');
+                    const numEl = prog.querySelector('.percent');
+                    const barTarget = parseInt(bar.getAttribute('data-target')) || target;
+                    bar.style.transition = 'width 1.2s ease';
+                    requestAnimationFrame(() => { bar.style.width = barTarget + '%'; });
+                    const duration = 1200; const startTime = performance.now();
+                    function tick(now){
+                        const p = Math.min(1, (now - startTime)/duration);
+                        const v = Math.floor(p * barTarget);
+                        if (numEl) numEl.textContent = v + '%';
+                        if (p < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                });
+                skillObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.35 });
+    if (skillsSection) skillObserver.observe(skillsSection);
+    </script>
+</body>
+</html>
+
